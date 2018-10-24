@@ -57,4 +57,12 @@ add_action( 'wp', function() {
             'box-shadow: 0px -3px ' . get_theme_mod( 'accent-color') .' inset;', 
         ]
     );
+    $cfs->register(
+        [
+            '.l-footer',
+        ],
+        [
+            'background-color: rgba(' .$colorset. ' ,.1)', 
+        ]
+    );
 } );
