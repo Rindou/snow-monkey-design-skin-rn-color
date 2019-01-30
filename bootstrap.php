@@ -1,7 +1,11 @@
-
 <?php
-add_action( 'wp', function() {
-    $cfs = \Inc2734\WP_Customizer_Framework\Customizer_Framework::styles();
+
+use Inc2734\WP_Customizer_Framework\Style;
+
+add_action(
+  'inc2734_wp_customizer_framework_load_styles',
+  function() {
+    $accent_color = get_theme_mod( 'accent-color' );
 
     //RGB数値に変換するカラーコード
     $colorcode = get_theme_mod( 'accent-color' );
@@ -16,8 +20,8 @@ add_action( 'wp', function() {
     $cblue = hexdec(substr($colorcode, 4, 2));
 
     $colorset =  $cred . ", " . $cgreen . ", " . $cblue;
-     
-    $cfs->register(
+
+Style::register(
         [
             'body',
         ],
@@ -25,7 +29,7 @@ add_action( 'wp', function() {
             'background-color: rgba(' .$colorset. ' ,.07)', 
         ]
     );
-    $cfs->register(
+Style::register(
         [
             '.c-entries--rich-media .c-entry-summary__figure::after, .c-entries--rich-media .c-page-summary__figure::after',
         ],
@@ -33,7 +37,7 @@ add_action( 'wp', function() {
             'color: ' . get_theme_mod( 'accent-color') . ';background-color: rgba(255,255,255,.9);background-image:none;',
         ]
     );
-    $cfs->register(
+Style::register(
         [
             '.c-pagination__item-link:active, .c-pagination__item-link:focus, .c-pagination__item-link:hover',
         ],
@@ -41,7 +45,7 @@ add_action( 'wp', function() {
             'background-color: rgba(' .$colorset. ' ,.6)', 
         ]
     );
-    $cfs->register(
+Style::register(
         [
             '.c-widget__title,.archive .c-entry__title',
         ],
@@ -49,7 +53,7 @@ add_action( 'wp', function() {
             'background-color:  ' . get_theme_mod( 'accent-color') .';', 
         ]
     );
-    $cfs->register(
+Style::register(
         [
             '.p-global-nav .c-navbar__item[data-active-menu="true"] > a, .l-header[data-l-header-type="overlay"] [data-has-global-nav] .p-global-nav .c-navbar__item[data-active-menu="true"] > a',
         ],
@@ -57,7 +61,7 @@ add_action( 'wp', function() {
             'box-shadow: 0px -3px ' . get_theme_mod( 'accent-color') .' inset;', 
         ]
     );
-    $cfs->register(
+Style::register(
         [
             '.l-footer',
         ],
@@ -65,4 +69,5 @@ add_action( 'wp', function() {
             'background-color: rgba(' .$colorset. ' ,.1)', 
         ]
     );
-} );
+  }
+);
